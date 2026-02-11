@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+default = true
+
+[project]
+name = "usbtmc-lite-mcp"
+version = "0.1.0"
+description = "MCP server for controlling USBTMC (USB Test and Measurement Class) instruments"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13"
+authors = [
+    { name = "Naoya Imai" },
+]
+keywords = [
+    "mcp",
+    "measurement-instruments",
+    "usbtmc",
+    "usb",
+    "test-equipment",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+]
+dependencies = [
+    "fastmcp>=2.14.3",
+    "mcp[cli]>=1.25.0",
+    "usbtmc-lite",
+    "libusb-package",
+]
+
+[project.scripts]
+usbtmc-lite-mcp = "usbtmc_lite_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/NaoNaoMe/usbtmc-lite-mcp"
+Repository = "https://github.com/NaoNaoMe/usbtmc-lite-mcp"
+Issues = "https://github.com/NaoNaoMe/usbtmc-lite-mcp/issues"
+
