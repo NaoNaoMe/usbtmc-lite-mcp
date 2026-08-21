@@ -9,7 +9,7 @@ default = true
 
 [project]
 name = "usbtmc-lite-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP server for controlling USBTMC (USB Test and Measurement Class) instruments"
 readme = "README.md"
 license = "MIT"
@@ -37,8 +37,9 @@ classifiers = [
     "Topic :: System :: Hardware :: Hardware Drivers",
 ]
 dependencies = [
-    "fastmcp>=2.14.3",
-    "mcp[cli]>=1.25.0",
+    # Upper bound: mcp 2.0 renamed FastMCP -> MCPServer and moved it to
+    # mcp.server.mcpserver. Lifted once this server migrates to the v2 API.
+    "mcp[cli]>=1.25.0,<2.0.0",
     "usbtmc-lite",
     "libusb-package",
 ]
