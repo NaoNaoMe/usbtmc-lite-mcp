@@ -7,10 +7,11 @@ measurement instruments simultaneously via the USBTMC protocol.
 
 import logging
 import time
+from importlib.metadata import PackageNotFoundError, version as _pkg_version
 from typing import Any, Optional
 
 import libusb_package
-from mcp.server.fastmcp import FastMCP, Image
+from mcp.server.mcpserver import MCPServer, Image
 from pydantic import BaseModel, ConfigDict, Field
 
 from usbtmc_lite import USBTMC
@@ -42,7 +43,12 @@ device_pool: dict[int, dict[str, Any]] = {}  # {device_id: {"instance": USBTMC, 
 # ============================================================
 # MCP Server Setup
 # ============================================================
-mcp = FastMCP(
+try:
+    _VERSION = _pkg_version("usbtmc-lite-mcp")
+except PackageNotFoundError:  # running from a source checkout
+    _VERSION = "0.0.0.dev0"
+
+mcp = MCPServer(
     name="usbtmc_mcp",
     instructions="""
 USBTMC Multi-Device Controller
@@ -51,6 +57,7 @@ USBTMC Multi-Device Controller
 - Workflow: list_devices → connect → use device_id for operations → disconnect
 - Low-level SCPI command interface: AI constructs appropriate commands
 """,
+    version=_VERSION,
 )
 
 
