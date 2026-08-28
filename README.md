@@ -15,6 +15,7 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for co
 ## Requirements
 
 - Python >= 3.13
+- `mcp[cli]` **2.x** (v0.2.0 and later; use `usbtmc-lite-mcp` 0.1.x if you are pinned to `mcp` 1.x)
 
 ### Windows Additional Setup
 This project uses libUSB as a backend for USB communication. On Windows, you need to install a compatible USB driver for your device using [Zadig](https://zadig.akeo.ie/).
